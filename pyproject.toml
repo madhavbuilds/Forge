@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "forge-ai"
+version = "0.1.0"
+description = "Forge — offline, multi-model agentic coding assistant for the terminal"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "Forge contributors" }]
+keywords = ["ollama", "llm", "cli", "agent", "offline", "coding-assistant"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "typer>=0.12.0",
+  "rich>=13.7.0",
+  "litellm>=1.50.0",
+  "tiktoken>=0.7.0",
+  "httpx>=0.27.0",
+  "faiss-cpu>=1.8.0",
+  "sentence-transformers>=3.0.0",
+  "tree-sitter>=0.21.0,<0.22",
+  "tree-sitter-languages>=1.8.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "ruff>=0.6.0"]
+
+[project.scripts]
+# Prefer forge-ai / forgeai — plain `forge` collides with other global CLIs on PATH.
+forge-ai = "forge.__main__:main"
+forgeai = "forge.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/forge-ai/forge"
+Repository = "https://github.com/forge-ai/forge"
+
+[tool.hatch.build.targets.wheel]
+packages = ["forge"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
